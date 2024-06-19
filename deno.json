@@ -1,6 +1,7 @@
 {
   "imports": {
-    "lume/": "https://deno.land/x/lume@v2.2.1/"
+    "lume/": "https://deno.land/x/lume@v2.2.1/",
+    "prismjs/": "npm:prismjs@1.29.0/"
   },
   "tasks": {
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
