@@ -4,7 +4,7 @@
     "prismjs/": "npm:prismjs@1.29.0/"
   },
   "tasks": {
-    "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
+    "lume": "echo \"import 'lume/cli.ts'\" | deno run -A --unstable-ffi -",
     "build": "deno task lume",
     "serve": "deno task lume -s"
   },

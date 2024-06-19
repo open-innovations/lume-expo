@@ -12,7 +12,20 @@
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-  {{ comp.headerNav() }}
-  {{ content }}
+  <header>
+    {{ comp.headerNav() }}
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <p>
+      Steal this page! Take a look at 
+      <a href="{{ repo }}/blob/main/src{{ page.src.entry.path }}">the source code</a>.
+    </p>
+  </footer>
+
 </body>
 </html>

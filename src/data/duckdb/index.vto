@@ -1,0 +1,170 @@
+---
+title: DuckDB
+---
+<h1>{{ title }}</h1>
+
+<p>
+  As more data is rendered in a site, the build can slow down significantly.
+  It may be beneficial under these circumstances to use DuckDB to access data.
+  This is particularly true if the data in question is very large or if it is
+  used to generate very large numbers of pages.
+</p>
+
+<p>
+  The <a href="https://jsr.io/@dringtech/lume-duck">lume-duck</a> module provides
+  some utilities to integrate DuckDB into Lume.
+</p>
+
+<p>
+  You can import the library by adding the following line to your <code>_config.ts</code> file.
+</p>
+
+<pre><code class="language-ts">import { duckDbLoader, resultTable } from "jsr:@dringtech/lume-duck";</code></pre>
+
+<h2>
+  The <code>duckDbLoader</code> dataLoader
+</h2>
+
+<p>
+  The module includes a loader which converts <code>.sql</code> files in the site <code>_data/</code> directories
+  into callable functions which execute the included SQL.
+  These are prepared statements which can be called with parameters to customise the calls.
+  Some examples are given below.
+</p>
+
+<p>
+  To use the loader, add the following code to <code>_config.ts</code>.
+</p>
+
+<pre><code class="language-ts">site.loadData([".sql"], duckDbLoader());</code></pre>
+
+<p>
+  You will also need to make sure that the DuckDB C/C++ library for your system has been installed.
+  You can find out how to do this on
+  <a
+    href="https://duckdb.org/docs/installation/?version=stable&environment=cplusplus"
+  >the DuckDB installation documentation page</a>.
+</p>
+
+<h2>
+  The <code>resultTable</code> filter
+</h2>
+
+<p>
+  The filter presents query results as a text-formatted response table.
+</p>
+
+<p>
+  To use the loader, add the following code to <code>_config.ts</code>.
+</p>
+
+<pre><code class="language-ts">site.filter("resultTable", resultTable);</code></pre>
+
+<p>
+  This can be used as follows:
+</p>
+
+<pre><code class="language-ts">{{ echo }}{{ query() |> resultTable }}{{ /echo }}</code></pre>
+
+<p>
+  Examples of this are shown below.
+</p>
+
+<h2>Sample queries</h2>
+
+<table>
+<thead>
+  <tr>
+    <th>SQL</th>
+    <th>Query call</th>
+    <th>Result</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><pre><code class="language-sql">{{ simple }}</code></pre></td>
+    <td><pre><code class="language-ts">simple()</code></pre></td>
+    <td>{{ simple() |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ auto_inc }}</code></pre></td>
+    <td><pre><code class="language-ts">auto_inc(
+  1,
+  'Test'
+)</code></pre></td>
+    <td>{{ auto_inc(1, 'Test') |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ positional_params }}</code></pre></td>
+    <td><pre><code class="language-ts">positional_params(
+  1,
+  'Test'
+)</code></pre></td>
+    <td>{{ positional_params(1, 'Test') |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ local_csv }}</code></pre></td>
+    <td><pre><code class="language-ts">local_csv()</code></pre></td>
+    <td>{{ local_csv() |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ local_parquet }}</code></pre></td>
+    <td><pre><code class="language-ts">local_parquet()</code></pre></td>
+    <td>{{ local_parquet() |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ filtered.parquet }}</code></pre></td>
+    <td><pre><code class="language-ts">filtered.parquet(2)</code></pre>
+    </td>
+    <td>{{ filtered.parquet(2) |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ filtered.auto }}</code></pre></td>
+    <td><pre><code class="language-ts">filtered.auto(2n)</code></pre>
+    </td>
+    <td>{{ filtered.auto(2n) |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ filtered.cast }}</code></pre></td>
+    <td><pre><code class="language-ts">filtered.cast(2)</code></pre>
+    </td>
+    <td>{{ filtered.cast(2) |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ remote.describe }}</code></pre></td>
+    <td><pre><code class="language-ts">remote.describe()</code></pre>
+    </td>
+    <td>{{ remote.describe() |> resultTable }}</td>
+  </tr>
+  <tr>
+    <td><pre><code class="language-sql">{{ remote.reshape }}</code></pre></td>
+    <td><pre><code class="language-ts">remote.reshape()</code></pre>
+    </td>
+    <td>{{ remote.reshape() |> resultTable }}</td>
+  </tr>
+</tbody>
+</table>
+
+<h2>Hints and tips</h2>
+
+<p>
+  When loading CSV files, it pays to use the
+  <a href="https://duckdb.org/docs/data/csv/overview#csv-loading">read_csv function</a>
+  and explicitly set types for columns.
+  The type inference tends to escalate: so integers are rendered as <code>BIGINT</code> (64-bit)
+  rather than <code>INTEGER</code> (32-bit) values.
+  The major issue with this is that any parameters will need to be provided as JavaScript
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt">BigInt</a>
+  numbers (e.g. <code>12n</code> rather than <code>12</code>).
+  You can, also use <a href="https://duckdb.org/docs/sql/data_types/typecasting">SQL typecasting</a> to deal with this, although it's likely to be less memory-efficient.
+</p>
+
+<p>
+  The location of data files loaded via SQL is relative to the project root
+  (or at least, the location of the <code>_config.ts</code> file).
+  These should be kept separate from the Lume data files, to prevent
+  Lume loading them into memory and defeating the object of using DuckDB in the first place!
+</p>
+  
+</li>
+</ul>

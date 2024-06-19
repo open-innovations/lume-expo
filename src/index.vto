@@ -2,6 +2,15 @@
 title: Home
 ---
 <h1>OI Lume Expo</h1>
+
 <p>
   This site collects some common approaches to building Lume sites in use across Open Innovations.
 </p>
+
+<h2>Data techniques</h2>
+
+<ul>
+{{ for technique of search.pages('technique=data', 'title') }}
+  <li><a href="{{technique.url}}">{{ technique.title }}</a></li>
+{{ /for }}
+</ul>

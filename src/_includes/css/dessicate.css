@@ -1,0 +1,6 @@
+/* Undoes some of water css! */
+pre > code[class*=language-] {
+  padding: unset;
+  display: unset;
+  background-color: unset;
+}

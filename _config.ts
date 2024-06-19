@@ -9,6 +9,8 @@ import prism from "lume/plugins/prism.ts";
 import "npm:prismjs/components/prism-sql.js";
 import "npm:prismjs/components/prism-typescript.js";
 
+import { duckDbLoader, resultTable } from "jsr:@dringtech/lume-duck@0.1.2";
+
 const site = lume({
   // Set the source directory
   src: "src",
@@ -24,9 +26,21 @@ site.use(postcss());
  */
 site.use(prism({
   theme: {
-    name: 'okaidia',
-    path: "/_includes/css/code_theme.css"
-  }
+    name: "okaidia",
+    path: "/_includes/css/code_theme.css",
+  },
 }));
+
+/**
+ * To get the DuckDB Loader to work you need to install the DuckDB library.
+ * Deno also needs to be run with the --unstable-ffi flag.
+ */
+site.loadData(
+  [".sql"],
+  duckDbLoader({
+    dbPath: ":memory:",
+  }),
+);
+site.filter("resultTable", resultTable);
 
 export default site;
