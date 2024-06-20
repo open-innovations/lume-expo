@@ -1,0 +1,4 @@
+a {
+  transition-property: color, background;
+  transition-duration: 0.3s;
+}

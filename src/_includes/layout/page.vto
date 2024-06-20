@@ -15,8 +15,13 @@
   {{# Site header #}}
   {{ comp.page.Header(page.data) }}
 
-  {{# Site navigaation #}}
-  {{ comp.page.Nav() }}
+  {{# Site navigation #}}
+  {{ comp.page.Nav({
+    links: techniques
+      .map(x => search.page(`technique title=${x}`))
+      .filter(x => x)
+      .map(({ title, url }) => ({ title, url }))
+  }) }}
 
   <main>
     <h1>{{ title }}</h1>

@@ -1,6 +1,37 @@
 ---
-css: 
+css: |
+  :root {
+    --nav-page-color: black;
+    --nav-page-background: #aaa;
+    --nav-page-color-hover: white;
+    --nav-page-background-hover: black;
+  }
+  nav.page {
+    background: var(--nav-page-background);
+  }
+  nav.page > ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+  }
+  nav.page a {
+    display: block;
+    padding: 0.5em 1em;
+    color: var(--nav-page-color);
+    background: var(--nav-page-background);
+  }
+  nav.page a:hover {
+    --nav-page-color: var(--nav-page-color-hover);
+    --nav-page-background: var(--nav-page-background-hover);
+  }
 ---
-<nav>
-  <a href="/">Home</a>
+<nav class="page">
+  <ul>
+  {{ for key, link of links }}
+    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+  {{ /for }}
+  </ul>
 </nav>
