@@ -8,3 +8,7 @@ metas:
   site: OI Lume Expo
   title: "=title"
   description: "=description"
+
+techniques:
+  - Core
+  - Data

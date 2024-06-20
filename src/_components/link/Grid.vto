@@ -1,0 +1,30 @@
+---
+css: |
+  ul.link-grid {
+    padding: unset;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  ul.link-grid > * {
+    flex-basis: 10em;
+    flex-grow: 0;
+    flex-shrink: 1;
+  }
+  ul.link-grid a.content {
+    display: block;
+    padding: 1em;
+  }
+  ul.link-grid a.content:hover {
+    color: var(--link-hover-color, white);
+    background: var(--link-hover-background, black);
+  }
+---
+<ul class="link-grid">
+  {{ for link of links }}
+    <li>
+      <a class="content" href="{{ link.url }}">{{ link.title }}</a>
+    </li>
+  {{ /for }}
+</ul>

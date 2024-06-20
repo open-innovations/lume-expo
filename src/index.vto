@@ -5,10 +5,7 @@ title: Home
   This site collects some common approaches to building Lume sites in use across Open Innovations.
 </p>
 
-<h2>Data techniques</h2>
-
-<ul>
-{{ for technique of search.pages('technique=data', 'title') }}
-  <li><a href="{{technique.url}}">{{ technique.title }}</a></li>
+{{ for technique of search.pages('technique') }}
+  <h2>{{ technique.title }}</h2>
+  {{ comp.link.Grid({ links: technique.catalogue }) }}
 {{ /for }}
-</ul>

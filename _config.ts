@@ -18,6 +18,9 @@ const site = lume({
   src: "src",
   // Set the hosting location
   location: new URL("https://open-innovations.github.io/lume-expo"),
+  components: {
+    cssFile: "_includes/css/components.css",
+  },
 });
 
 /**
@@ -49,7 +52,7 @@ site.filter("resultTable", resultTable);
 
 /**
  * Set up the metas plugin for SEO.
- * 
+ *
  * See https://lume.land/plugins/metas/#installation
  */
 site.use(metas());
