@@ -5,3 +5,5 @@ scripts:
       read: [.]
       write: [.]
       net: [github.com, objects.githubusercontent.com, deno.land]
+  act:
+    cmd: gh act --action-offline-mode --job build build
