@@ -3,6 +3,7 @@ import lume from "lume/mod.ts";
 import postcss from "lume/plugins/postcss.ts";
 import prism from "lume/plugins/prism.ts";
 import basePath from "lume/plugins/base_path.ts";
+import metas from "lume/plugins/metas.ts";
 
 /**
  * Import languages
@@ -45,6 +46,13 @@ site.loadData(
   }),
 );
 site.filter("resultTable", resultTable);
+
+/**
+ * Set up the metas plugin for SEO.
+ * 
+ * See https://lume.land/plugins/metas/#installation
+ */
+site.use(metas());
 
 /**
  * The `base_path` plugin prefixes URLs in the generated site with a path derived from

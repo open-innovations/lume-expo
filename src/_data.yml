@@ -1,3 +1,10 @@
 # Set default layout for whole site
 layout: layout/page.vto
 repo: https://github.com/open-innovations/lume-expo
+
+# The metas data entry is used for SEO, in conjunction with the `metas` plugin 
+# https://lume.land/plugins/metas/
+metas:
+  site: OI Lume Expo
+  title: "=title"
+  description: "=description"
