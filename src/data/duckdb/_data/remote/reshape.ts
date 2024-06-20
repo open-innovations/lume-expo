@@ -1,13 +1,13 @@
-import { open } from 'jsr:@divy/duckdb';
+import { open } from "jsr:@divy/duckdb";
 
 const db = open(":memory:");
 
 const decoder = new TextDecoder("utf-8");
-const sql = decoder.decode(await Deno.readFile('queries/reshape.sql'));
+const sql = decoder.decode(await Deno.readFile("queries/reshape.sql"));
 
-export default function() {
+export default function () {
   const connection = db.connect();
   const res = connection.query(sql);
-  connection.close()
+  connection.close();
   return res;
 }

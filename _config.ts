@@ -16,7 +16,7 @@ const site = lume({
   // Set the source directory
   src: "src",
   // Set the hosting location
-  location: new URL('https://open-innovations.github.io/lume-expo'),
+  location: new URL("https://open-innovations.github.io/lume-expo"),
 });
 
 /**
@@ -49,9 +49,9 @@ site.filter("resultTable", resultTable);
 /**
  * The `base_path` plugin prefixes URLs in the generated site with a path derived from
  * the `location` setting confiured when the `site` object is created.
- * 
+ *
  * See https://lume.land/plugins/base_path/
  */
-site.use(basePath())
+site.use(basePath());
 
 export default site;
