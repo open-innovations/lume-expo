@@ -2,6 +2,7 @@
 import lume from "lume/mod.ts";
 import postcss from "lume/plugins/postcss.ts";
 import prism from "lume/plugins/prism.ts";
+import basePath from "lume/plugins/base_path.ts";
 
 /**
  * Import languages
@@ -14,6 +15,8 @@ import { duckDbLoader, resultTable } from "jsr:@dringtech/lume-duck@0.1.2";
 const site = lume({
   // Set the source directory
   src: "src",
+  // Set the hosting location
+  location: new URL('https://open-innovations.github.io/lume-expo'),
 });
 
 /**
@@ -42,5 +45,13 @@ site.loadData(
   }),
 );
 site.filter("resultTable", resultTable);
+
+/**
+ * The `base_path` plugin prefixes URLs in the generated site with a path derived from
+ * the `location` setting confiured when the `site` object is created.
+ * 
+ * See https://lume.land/plugins/base_path/
+ */
+site.use(basePath())
 
 export default site;
