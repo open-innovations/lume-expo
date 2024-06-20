@@ -6,6 +6,7 @@
       "jsr:@divy/duckdb@0.2.1": "jsr:@divy/duckdb@0.2.1",
       "jsr:@divy/plug@1.0.3": "jsr:@divy/plug@1.0.3",
       "jsr:@dringtech/lume-duck@0.1.2": "jsr:@dringtech/lume-duck@0.1.2",
+      "jsr:@dringtech/lume-duck@0.2.0": "jsr:@dringtech/lume-duck@0.2.0",
       "jsr:@std/assert@^0.213.1": "jsr:@std/assert@0.213.1",
       "jsr:@std/assert@^0.224.0": "jsr:@std/assert@0.224.0",
       "jsr:@std/assert@^0.225.1": "jsr:@std/assert@0.225.3",
@@ -24,8 +25,10 @@
       "jsr:@std/fmt@^0.225.0": "jsr:@std/fmt@0.225.3",
       "jsr:@std/fmt@^0.225.3": "jsr:@std/fmt@0.225.3",
       "jsr:@std/front-matter@0.224.2": "jsr:@std/front-matter@0.224.2",
+      "jsr:@std/fs": "jsr:@std/fs@0.229.1",
       "jsr:@std/fs@0.213.1": "jsr:@std/fs@0.213.1",
       "jsr:@std/fs@0.229.1": "jsr:@std/fs@0.229.1",
+      "jsr:@std/fs@0.229.3": "jsr:@std/fs@0.229.3",
       "jsr:@std/fs@^0.229.0": "jsr:@std/fs@0.229.1",
       "jsr:@std/http@0.224.3": "jsr:@std/http@0.224.3",
       "jsr:@std/io@^0.224.0": "jsr:@std/io@0.224.1",
@@ -36,6 +39,7 @@
       "jsr:@std/net@^0.224.2": "jsr:@std/net@0.224.3",
       "jsr:@std/path@0.213.1": "jsr:@std/path@0.213.1",
       "jsr:@std/path@0.225.2": "jsr:@std/path@0.225.2",
+      "jsr:@std/path@1.0.0-rc.1": "jsr:@std/path@1.0.0-rc.1",
       "jsr:@std/path@^0.213.1": "jsr:@std/path@0.213.1",
       "jsr:@std/path@^0.225.1": "jsr:@std/path@0.225.2",
       "jsr:@std/path@^0.225.2": "jsr:@std/path@0.225.2",
@@ -44,6 +48,7 @@
       "jsr:@std/toml@^0.224.1": "jsr:@std/toml@0.224.1",
       "jsr:@std/yaml@0.224.1": "jsr:@std/yaml@0.224.1",
       "jsr:@std/yaml@^0.224.1": "jsr:@std/yaml@0.224.1",
+      "jsr:@zip-js/zip-js@2.7.45": "jsr:@zip-js/zip-js@2.7.45",
       "npm:@js-temporal/polyfill@0.4.4": "npm:@js-temporal/polyfill@0.4.4",
       "npm:@types/estree@1.0.5": "npm:@types/estree@1.0.5",
       "npm:autoprefixer@10.4.19": "npm:autoprefixer@10.4.19_postcss@8.4.38",
@@ -75,6 +80,12 @@
       },
       "@dringtech/lume-duck@0.1.2": {
         "integrity": "179cbf6ba235941d47cae664b1d528460334175141888b5fc486c499ff6165f9",
+        "dependencies": [
+          "jsr:@divy/duckdb@0.2.1"
+        ]
+      },
+      "@dringtech/lume-duck@0.2.0": {
+        "integrity": "ee7bb107d72e5d0dfbb7dc3d9bd0bf174859491d68cd5bae317edafc6231569a",
         "dependencies": [
           "jsr:@divy/duckdb@0.2.1"
         ]
@@ -143,6 +154,12 @@
           "jsr:@std/path@^0.225.1"
         ]
       },
+      "@std/fs@0.229.3": {
+        "integrity": "783bca21f24da92e04c3893c9e79653227ab016c48e96b3078377ebd5222e6eb",
+        "dependencies": [
+          "jsr:@std/path@1.0.0-rc.1"
+        ]
+      },
       "@std/http@0.224.3": {
         "integrity": "dac3a3640c730b9a4bcdb916b5231f4f2f5c141daf8dafc2b46011e1dab08eed",
         "dependencies": [
@@ -195,6 +212,9 @@
           "jsr:@std/assert@^0.226.0"
         ]
       },
+      "@std/path@1.0.0-rc.1": {
+        "integrity": "b8c00ae2f19106a6bb7cbf1ab9be52aa70de1605daeb2dbdc4f87a7cbaf10ff6"
+      },
       "@std/streams@0.224.5": {
         "integrity": "bcde7818dd5460d474cdbd674b15f6638b9cd73cd64e52bd852fba2bd4d8ec91"
       },
@@ -206,6 +226,9 @@
       },
       "@std/yaml@0.224.1": {
         "integrity": "cbb444acccce7ea34b9ef6678bff84c18eba89b790e52dd098def8dae313f0b2"
+      },
+      "@zip-js/zip-js@2.7.45": {
+        "integrity": "0eb37002a4c32397f144dee55fc8e46ee24300920f0a99adb66a931d0e423e55"
       }
     },
     "npm": {
@@ -693,8 +716,10 @@
     "https://deno.land/x/lume@v2.2.1/middlewares/reload.ts": "c9999bdd52e18e85a1634659506542ce0e942cc91b69e3fc9887cabf23ca4592",
     "https://deno.land/x/lume@v2.2.1/middlewares/reload_client.js": "34d75e01503fae8180796de882af42b1125fac88f22a010a99d5548de1ba7d72",
     "https://deno.land/x/lume@v2.2.1/mod.ts": "0f7afe1e73472bee8fb6dc21d616f9c055a1cffd3a3744f2005b8a6ccfbf8aed",
+    "https://deno.land/x/lume@v2.2.1/plugins/base_path.ts": "ab451b1c6911fbf4f3babf1e41e31500e3402e31b6a0b810418a2f3e1052ccdb",
     "https://deno.land/x/lume@v2.2.1/plugins/json.ts": "f6429bbd865e3666ef3385fd205fcc92df02ca2c0f74f20baa5c0798a81e1642",
     "https://deno.land/x/lume@v2.2.1/plugins/markdown.ts": "b0f224dcffa0abeb30af178d7ec21f50515c2a7ccd42a3347aac3bea53c4ca27",
+    "https://deno.land/x/lume@v2.2.1/plugins/modify_urls.ts": "f2319fd98d60578fe78f4c197aa5d98785234732bbd2287e78a47d15d4a2b641",
     "https://deno.land/x/lume@v2.2.1/plugins/modules.ts": "19a66398a5494f506458e48b8443a7c4700b7577e8fcc0818c39b1d0530c8950",
     "https://deno.land/x/lume@v2.2.1/plugins/paginate.ts": "e86617ec1ad491c86bc4866db41f070a6b393e8c2ac94ed28a51ca309f88477d",
     "https://deno.land/x/lume@v2.2.1/plugins/postcss.ts": "3a95ed88cf5f10f1e9f06c9e16e063e6035c72edbf7e76dda31bd66967a69e9b",

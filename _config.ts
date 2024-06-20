@@ -10,7 +10,7 @@ import basePath from "lume/plugins/base_path.ts";
 import "npm:prismjs/components/prism-sql.js";
 import "npm:prismjs/components/prism-typescript.js";
 
-import { duckDbLoader, resultTable } from "jsr:@dringtech/lume-duck@0.1.2";
+import { duckDbLoader, resultTable } from "jsr:@dringtech/lume-duck@0.2.0";
 
 const site = lume({
   // Set the source directory

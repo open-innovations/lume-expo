@@ -1,2 +1,6 @@
 _site
 _cache
+
+duckdb.dll
+libduckdb.dylib
+libduckdb.so

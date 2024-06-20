@@ -1,0 +1,7 @@
+scripts:
+  provision:
+    cmd: deno run jsr:@dringtech/lume-duck/provisioner
+    allow:
+      read: [.]
+      write: [.]
+      net: [github.com, objects.githubusercontent.com, deno.land]
