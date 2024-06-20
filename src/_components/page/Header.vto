@@ -2,9 +2,15 @@
 css: |
   header.page {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  header.page img {
+    width: 80px;
+    height: 80px;
   }
 ---
 <header class="page">
-  <h1><a href="/">{{ metas.site }}</a></h1>
+  <a href="/"><img src="{{ header.logo }}"/></a>
+  <a class="title" href="/">{{ metas.site }}</a>
 </header>

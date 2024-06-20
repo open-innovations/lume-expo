@@ -9,6 +9,9 @@ metas:
   title: "=title"
   description: "=description"
 
+header:
+  logo: https://open-innovations.org/resources/images/logos/oi-square-13.svg
+
 techniques:
   - Core
   - Data
