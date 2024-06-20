@@ -6,7 +6,7 @@
   "tasks": {
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A --unstable-ffi -",
     "build": "deno task vr provision && deno task lume",
-    "serve": "deno task vr provision && deno task lume -s",
+    "serve": "deno task lume -s",
     "vr": "deno run -qA https://code.velociraptor.run"
   },
   "compilerOptions": {
