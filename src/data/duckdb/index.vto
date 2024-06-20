@@ -42,9 +42,12 @@ title: DuckDB
   You will also need to make sure that the DuckDB C/C++ library for your system has been installed.
   You can find out how to do this on
   <a
-    href="https://duckdb.org/docs/installation/?version=stable&environment=cplusplus"
+    href="https://duckdb.org/docs/installation/"
   >the DuckDB installation documentation page</a>.
+  The library also includes a provisioner, which can be used as follows:
 </p>
+
+<pre><code class="language-shell">deno run -A jsr:@dringtech/lume-duck/provisioner</code></pre>
 
 <h2>
   The <code>resultTable</code> filter
