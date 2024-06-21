@@ -5,8 +5,8 @@ title: Home
   This site collects some common approaches to building Lume sites in use across Open Innovations.
 </p>
 
-{{ for technique of techniques.map(x => search.page(`technique title=${x}`)).filter(x => x) }}
+{{ for technique of search.pages('technique', 'order') }}
   <h2>{{ technique.title }}</h2>
-  {{ comp.link.Grid({ links: technique.catalogue.toSorted((a, b) => a.title > b.title ? 1 : -1) }) }}
+  {{ comp.link.Grid({ links: technique.catalogue }) }}
 {{ /for }}
 

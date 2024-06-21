@@ -12,10 +12,7 @@
 
   {{# Site navigation #}}
   {{ comp.page.Nav({
-    links: techniques
-      .map(x => search.page(`technique title=${x}`))
-      .filter(x => x)
-      .map(({ title, url }) => ({ title, url }))
+    links: search.pages('technique', 'order') // Find all search technique pages
   }) }}
 
   <main>

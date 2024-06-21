@@ -13,5 +13,7 @@ header:
   logo: https://open-innovations.org/resources/images/logos/oi-square-13.svg
 
 techniques:
-  - Core
-  - Data
+  - key: core
+    title: Core
+  - key: data
+    title: Data
