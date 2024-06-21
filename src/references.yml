@@ -9,6 +9,11 @@ catalogue:
     description: |
       Lume is a static site generator which uses the Deno JavaScript runtime.
       We use this as the core platform for many of the sites we build.
+  - title: Vento
+    url: https://ventojs.org/
+    description: |
+      Vento is a templating language created by the maintainer of Lume,
+      and is installed by default new Lume sites.
   - title: OI Lume Viz
     url: https://open-innovations.github.io/oi-lume-viz/
     description: |
