@@ -65,4 +65,9 @@ site.use(metas());
  */
 site.use(basePath());
 
+/**
+ * Copy the asset folders over to the built site
+ */
+site.copy('assets/fonts/');
+
 export default site;

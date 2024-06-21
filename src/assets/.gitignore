@@ -1,0 +1,3 @@
+fonts/ttf/
+fonts/webfonts/*
+!fonts/webfonts/poppins-latin-600-*

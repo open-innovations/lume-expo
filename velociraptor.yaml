@@ -7,3 +7,9 @@ scripts:
       net: [github.com, objects.githubusercontent.com, deno.land]
   act:
     cmd: gh act --action-offline-mode --job build build
+  fonts:
+    cmd: utils/getFonts.ts
+    allow:
+      read: [.]
+      write: [src/assets]
+      net: [api.fontsource.org, r2.fontsource.org, deno.land]

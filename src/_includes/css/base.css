@@ -1,48 +1,75 @@
+@import "./fonts/poppins.css";
+
 html {
+  font-family: Arial, Helvetica, sans-serif;
   height: 100%;
   box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   min-height: 100%;
   position: relative;
   & > * {
     padding-inline: 1em;
   }
-}
-
-body > header {
-  color: var(--header-color, white);
-  background: var(--header-background, black);
-  padding-block: 16px;
-  font-size: 2rem;
-  font-weight: bold;
-  & a {
-    color: inherit;
-    text-decoration: none;
-    &.title:hover {
-      text-decoration: underline;
+  & > header {
+    /* All text should be Poppins 600 */
+    font-family: Poppins;
+    font-weight: 600;
+    /* Font size set relative to page base */
+    font-size: 2rem;
+  
+    color: var(--header-color, white);
+    background: var(--header-background, black);
+    padding-block: 16px;
+    & a {
+      color: inherit;
+      text-decoration: none;
+      &.title:hover {
+        text-decoration: underline;
+      }
     }
   }
+  & > nav {
+    /* All text should be Poppins 600 */
+    font-family: Poppins;
+    font-weight: 600;
+    /* Font size set relative to page base */
+    font-size: 1.2rem;
+    & a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  & > footer {
+    color: white;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    & a {
+      color: yellow;
+    }
+    & > * {
+      max-width: 1080px;
+      margin-inline: auto;
+    }
+  }    
 }
 
 main {
-  /* Allows for footer */
-  padding-block-end: 100px;
   max-width: 1080px;
   margin-inline: auto;
+
+  /* Allows for footer */
+  padding-block-end: 100px;
 }
 
-body > footer {
-  color: white;
-  background-color: black;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  & a {
-    color: yellow;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: Poppins;
+  font-weight: 600;
 }
