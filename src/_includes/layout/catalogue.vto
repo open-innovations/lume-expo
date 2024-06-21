@@ -1,4 +1,12 @@
 ---
 layout: ./page.vto
 ---
-{{ comp.link.Grid({ links: catalogue }) }}
+
+{{ if description -}}
+  <p>{{ description }}</p>  
+{{- /if }}
+
+{{ comp.layout.Grid({
+  items: catalogue,
+  renderer: comp.link.Block
+}) }}

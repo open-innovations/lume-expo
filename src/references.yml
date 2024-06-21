@@ -1,0 +1,19 @@
+key: references
+tags: [ technique ]
+title: Links
+order: 100
+layout: layout/catalogue.vto
+catalogue:
+  - title: Lume
+    url: https://lume.land/
+    description: |
+      Lume is a static site generator which uses the Deno JavaScript runtime.
+      We use this as the core platform for many of the sites we build.
+  - title: OI Lume Viz
+    url: https://open-innovations.github.io/oi-lume-viz/
+    description: |
+      We've packaged up some of our visualisations as a reusable Lume plugin library.
+  - title: DuckDB
+    url: https://duckdb.org/
+    description: |
+      DuckDB is a fast in-process analytical database.

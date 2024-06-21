@@ -1,0 +1,24 @@
+---
+css: |
+  ul.layout-grid {
+    padding: unset;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(15em, 1fr) );
+    gap: 1em;
+  }
+  ul.layout-grid > li {
+    display: block;
+  }
+---
+<ul class="layout-grid">
+  {{ for item of items -}}
+    <li>
+      {{ if renderer }}
+        {{ renderer(item) }}
+      {{ else }}
+        {{ item }}
+      {{ /if }}
+    </li>
+  {{- /for }}
+</ul>

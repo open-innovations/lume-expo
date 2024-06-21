@@ -7,6 +7,9 @@ title: Home
 
 {{ for technique of search.pages('technique', 'order') }}
   <h2>{{ technique.title }}</h2>
-  {{ comp.link.Grid({ links: technique.catalogue }) }}
+  {{ comp.layout.Grid({
+    items: technique.catalogue,
+    renderer: comp.link.Block
+  }) }}
 {{ /for }}
 
