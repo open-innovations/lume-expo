@@ -4,18 +4,3 @@
 @import 'css/base.css';
 @import 'css/table.css';
 @import 'css/transitions.css';
-
-:root {
-  --header-color: white;
-  --header-background: #2254F4;
-
-  --nav-page-color: white;
-  --nav-page-background: black;
-  --nav-page-color-hover: black;
-  --nav-page-background-hover: white;
-
-  --link-block-color: black;
-  --link-block-background: #aaa;
-  --link-block-color-hover: white;
-  --link-block-background-hover: black;
-}

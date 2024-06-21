@@ -12,7 +12,8 @@
 
   {{# Site navigation #}}
   {{ comp.page.Nav({
-    links: search.pages('technique', 'order') // Find all search technique pages
+    links: search.pages('technique', 'order'), // Find all search technique pages
+    current: url
   }) }}
 
   <main>

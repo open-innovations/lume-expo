@@ -1,5 +1,21 @@
 @import "./fonts/poppins.css";
 
+/* Site-wide overrides of variables. Customises the components. */
+:root {
+  --header-color: white;
+  --header-background: #2254F4;
+
+  --nav-page-color: white;
+  --nav-page-background: black;
+  --nav-page-color-hover: black;
+  --nav-page-background-hover: white;
+
+  --link-block-color: black;
+  --link-block-background: #aaa;
+  --link-block-color-hover: white;
+  --link-block-background-hover: black;
+}
+
 html {
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
@@ -42,6 +58,10 @@ body {
       &:hover {
         text-decoration: underline;
       }
+    }
+    & .current {
+      --nav-page-color: black;
+      --nav-page-background: white;
     }
   }
   & > footer {

@@ -31,7 +31,14 @@ css: |
 <nav class="page">
   <ul>
   {{ for key, link of links }}
-    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    <li>
+      <a
+        href="{{ link.url }}"
+        class="{{ current.startsWith(link.url) ? 'current' : null }}"
+      >
+        {{ link.title }}
+      </a>
+    </li>
   {{ /for }}
   </ul>
 </nav>
