@@ -17,5 +17,8 @@ techniques:
     title: Core
   - key: data
     title: Data
+    description: |
+      Data is key to the creation of Lume sites.
+      Here are some of the techniques we use when dealing with data.
   - key: references
     title: Links

@@ -22,7 +22,7 @@ export default function* ({ search, techniques }: Lume.Data & {
     // Find all pages that have this technique key set
     // Sort by title
     const pages = search.pages(`technique=${key}`, "title").map(
-      ({ title, url }) => ({ title, url }),
+      ({ title, url, description }) => ({ title, url, description }),
     );
 
     // Yield the page data for this page.
@@ -40,7 +40,11 @@ export default function* ({ search, techniques }: Lume.Data & {
 /**
  * Definition of a technique entry
  */
-type Technique = { key: string; title: string };
+type Technique = {
+    key: string;
+    title: string;
+    description: string;
+};
 
 /**
  * All pages created by this generator will use the catalogue layout

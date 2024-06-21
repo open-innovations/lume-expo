@@ -1,9 +1,19 @@
 ---
 title: DuckDB
 technique: data
+description: |
+  We use DuckDB as a way of managing larger datasets when building sites.
+  It also helps us work with other data formats, including Parquet.
 ---
+
 <p>
-  As more data is rendered in a site, the build can slow down significantly.
+  <a href="https://duckdb.org">DuckDB</a> is a fast in-process analytical database.
+  This means it's highly optimised to deal with queries (rather than updates)
+  and can work incredibly fast on very large datasets.
+</p>
+
+<p>
+  As more data is rendered in a Lume site, the build can slow down significantly.
   It may be beneficial under these circumstances to use DuckDB to access data.
   This is particularly true if the data in question is very large or if it is
   used to generate very large numbers of pages.

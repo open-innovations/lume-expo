@@ -3,12 +3,21 @@ tags: [ technique ]
 title: Links
 order: 100
 layout: layout/catalogue.vto
+description: |
+  The web is full of documentation!
+  Here are some of the browser tabs we have permanently open.
+  Most of the answers are within...
 catalogue:
   - title: Lume
     url: https://lume.land/
     description: |
       Lume is a static site generator which uses the Deno JavaScript runtime.
       We use this as the core platform for many of the sites we build.
+  - title: Lume Discord
+    url: https://discord.gg/YbTmpACHWB
+    description: |
+      For times that the brilliant Lume documentation doesn't have answers,
+      there's a really active and supportive Discord channel.
   - title: Vento
     url: https://ventojs.org/
     description: |

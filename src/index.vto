@@ -2,11 +2,14 @@
 title: Home
 ---
 <p>
-  This site collects some common approaches to building Lume sites in use across Open Innovations.
+  This is a collection of some common techniques that we at
+  <a href="https://open-innovations.org/">Open Innovations</a> use
+  when building websites using the <a href="https://lume.land/">Lume</a>.
 </p>
 
 {{ for technique of search.pages('technique', 'order') }}
   <h2>{{ technique.title }}</h2>
+  {{ if technique.description }}{{ technique.description |> md }}{{ /if }}
   {{ comp.layout.Grid({
     items: technique.catalogue,
     renderer: comp.link.Block
