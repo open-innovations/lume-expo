@@ -21,7 +21,7 @@ export default function* ({ search, techniques }: Lume.Data & {
 
     // Find all pages that have this technique key set
     // Sort by title
-    const pages = search.pages(`technique=${key}`, 'title').map(
+    const pages = search.pages(`technique=${key}`, "title").map(
       ({ title, url }) => ({ title, url }),
     );
 
