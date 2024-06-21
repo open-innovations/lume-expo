@@ -1,4 +1,3 @@
-SELECT
-id, name
+SELECT id, name
 FROM 'data/sample.csv'
 WHERE id <= ?;

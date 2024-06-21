@@ -1,5 +1,3 @@
-SELECT
-  name,
-  id
+SELECT name, id
 FROM 'data/sample.csv'
 ORDER BY name DESC;

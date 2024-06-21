@@ -1,7 +1,5 @@
-SELECT
-id, name
-FROM read_csv(
-  'data/sample.csv',
+SELECT id, name
+FROM read_csv('data/sample.csv',
   columns = {
     'id': 'INTEGER',
     'name': 'VARCHAR'

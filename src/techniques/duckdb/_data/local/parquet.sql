@@ -1,3 +1,3 @@
-SELECT name
+SELECT pq.*
 FROM 'data/sample.parquet'
-WHERE id == ?;
+AS pq;

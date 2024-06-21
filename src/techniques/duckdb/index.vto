@@ -72,80 +72,43 @@ technique: data
   Examples of this are shown below.
 </p>
 
-<h2>Sample queries</h2>
+<h2>Examples</h2>
 
-<table>
-<thead>
-  <tr>
-    <th>SQL</th>
-    <th>Query call</th>
-    <th>Result</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td><pre><code class="language-sql">{{ simple }}</code></pre></td>
-    <td><pre><code class="language-ts">simple()</code></pre></td>
-    <td>{{ simple() |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ auto_inc }}</code></pre></td>
-    <td><pre><code class="language-ts">auto_inc(
-  1,
-  'Test'
-)</code></pre></td>
-    <td>{{ auto_inc(1, 'Test') |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ positional_params }}</code></pre></td>
-    <td><pre><code class="language-ts">positional_params(
-  1,
-  'Test'
-)</code></pre></td>
-    <td>{{ positional_params(1, 'Test') |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ local_csv }}</code></pre></td>
-    <td><pre><code class="language-ts">local_csv()</code></pre></td>
-    <td>{{ local_csv() |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ local_parquet }}</code></pre></td>
-    <td><pre><code class="language-ts">local_parquet()</code></pre></td>
-    <td>{{ local_parquet() |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ filtered.parquet }}</code></pre></td>
-    <td><pre><code class="language-ts">filtered.parquet(2)</code></pre>
-    </td>
-    <td>{{ filtered.parquet(2) |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ filtered.auto }}</code></pre></td>
-    <td><pre><code class="language-ts">filtered.auto(2n)</code></pre>
-    </td>
-    <td>{{ filtered.auto(2n) |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ filtered.cast }}</code></pre></td>
-    <td><pre><code class="language-ts">filtered.cast(2)</code></pre>
-    </td>
-    <td>{{ filtered.cast(2) |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ remote.describe }}</code></pre></td>
-    <td><pre><code class="language-ts">remote.describe()</code></pre>
-    </td>
-    <td>{{ remote.describe() |> resultTable }}</td>
-  </tr>
-  <tr>
-    <td><pre><code class="language-sql">{{ remote.reshape }}</code></pre></td>
-    <td><pre><code class="language-ts">remote.reshape()</code></pre>
-    </td>
-    <td>{{ remote.reshape() |> resultTable }}</td>
-  </tr>
-</tbody>
-</table>
+{{ function renderExample(queryName, params, overrides) }}
+  {{ set query = queryName.split('.').reduce((d, k) => d[k], page.data) }}
+  <h3>Example: <code>{{ queryName }}</code></h3>
+  {{ if overrides?.description }}
+    {{ overrides.description }}
+  {{ else }}
+  <p>
+    The page data item <code class="language-ts">{{ queryName }}</code>
+    was instantiated from <code class="language-shell">{{ queryName |> replace(/\./, '/') }}.sql</code>.
+    It contains the following query:
+  </p>
+  <pre><code class="language-sql">{{ query }}</code></pre>
+  {{ /if }}
+  <p>
+    The query call
+    <code class="language-ts">{{ queryName }}({{ overrides?.params || params |> join(", ") }})</code>,
+    returns the following result:
+  </p>
+  <p>{{ query(...params || []) |> resultTable }}
+{{ /function}}
+
+{{ renderExample('simple', ) }}
+{{ renderExample('params.incrementing', [1, 'Test'])}}
+{{ renderExample('params.positional', [1, 'Test']) }}
+{{ renderExample('local.csv', ) }}
+{{ renderExample('local.parquet', ) }}
+{{ renderExample('filtered.parquet', [2]) }}
+{{ renderExample('filtered.auto', [2n], { params: ['2n'] }) }}
+{{ renderExample('filtered.cast', [2]) }}
+{{ renderExample('remote.describe' )}}
+{{ renderExample('remote.reshape', undefined , {
+  description: `<p>
+    The PIVOT statement is not yet supported as a prepared statement by the DuckDB library that we're using.
+    This is currently a workaround defined in <code class="language-ts">remote.reshape.ts</code>.
+</p>`} ) }}
 
 <h2>Hints and tips</h2>
 
