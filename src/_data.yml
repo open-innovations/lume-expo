@@ -10,7 +10,7 @@ metas:
   description: "=description"
 
 header:
-  logo: https://open-innovations.org/resources/images/logos/oi-square-13.svg
+  logo: /assets/images/oi-logo.svg
 
 techniques:
   - key: core

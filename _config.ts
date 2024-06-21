@@ -1,9 +1,10 @@
 // Check deno.json for import maps - this is where versions of modules are specified.
 import lume from "lume/mod.ts";
+import basePath from "lume/plugins/base_path.ts";
+import favicon from "lume/plugins/favicon.ts";
+import metas from "lume/plugins/metas.ts";
 import postcss from "lume/plugins/postcss.ts";
 import prism from "lume/plugins/prism.ts";
-import basePath from "lume/plugins/base_path.ts";
-import metas from "lume/plugins/metas.ts";
 
 /**
  * Import languages
@@ -66,8 +67,24 @@ site.use(metas());
 site.use(basePath());
 
 /**
+ * The `favicon` plugin creates appropriate favicons from an SVG source.
+ */
+site.use(favicon({
+  input: "/assets/images/oi-logo.svg",
+}));
+
+/**
+ * Map some remote files into the build tree. These can be included or copied as needed
+ */
+site.remoteFile(
+  "assets/images/oi-logo.svg",
+  "https://open-innovations.org/resources/images/logos/oi-square-4.svg",
+);
+
+/**
  * Copy the asset folders over to the built site
  */
-site.copy('assets/fonts/');
+site.copy("assets/images/");
+site.copy("assets/fonts/");
 
 export default site;

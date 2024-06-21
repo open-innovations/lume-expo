@@ -41,9 +41,9 @@ export default function* ({ search, techniques }: Lume.Data & {
  * Definition of a technique entry
  */
 type Technique = {
-    key: string;
-    title: string;
-    description: string;
+  key: string;
+  title: string;
+  description: string;
 };
 
 /**
