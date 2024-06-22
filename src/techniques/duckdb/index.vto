@@ -91,15 +91,15 @@ description: |
     {{ overrides.description }}
   {{ else }}
   <p>
-    The page data item <code class="language-ts">{{ queryName }}</code>
-    was instantiated from <code class="language-shell">{{ queryName |> replace(/\./, '/') }}.sql</code>.
+    The page data item <code>{{ queryName }}</code>
+    was instantiated from <code>{{ queryName |> replace(/\./, '/') }}.sql</code>.
     It contains the following query:
   </p>
   <pre><code class="language-sql">{{ query }}</code></pre>
   {{ /if }}
   <p>
     The query call
-    <code class="language-ts">{{ queryName }}({{ overrides?.params || params |> join(", ") }})</code>,
+    <code>{{ queryName }}({{ overrides?.params || params |> join(", ") }})</code>,
     returns the following result:
   </p>
   <p>{{ query(...params || []) |> resultTable }}
@@ -117,7 +117,7 @@ description: |
 {{ renderExample('remote.reshape', undefined , {
   description: `<p>
     The PIVOT statement is not yet supported as a prepared statement by the DuckDB library that we're using.
-    This is currently a workaround defined in <code class="language-ts">remote.reshape.ts</code>.
+    This is currently a workaround defined in <code>remote.reshape.ts</code>.
 </p>`} ) }}
 
 <h2>Hints and tips</h2>
