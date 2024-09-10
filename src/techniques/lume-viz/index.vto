@@ -1,0 +1,101 @@
+---
+title: Lume Viz
+technique: data
+description: |
+  We use our own visualisation library for data visualisations.
+---
+<h2>EDD and Remote Files</h2>
+<p>
+  Lots of the data we use comes from our Economic Data Dashboard (EDD). EDD stores data in long format, 
+  but for lume charts we need to reshape the data depending on the type of visualisation. For example, a 
+  line chart requires an x-axis column (usually a date), and a column per series that you want to show in the data. A bar chart
+  requires a column with each catgeory, and a column per series. A hex map requries a column of geography 
+  codes, and additional columns for each layer of the data you want to show (which you can move between using
+  sliders). Fundamentally, these are the same format - an x-axis column, and a column per series/category you want to show in the y-axis.
+</p>
+<p>
+  In the case that data is published in a standardised, machine readable format at a remote URL, 
+  we can use DuckDB and SQL queries to load and reshape the data in memory, without need for explicit 
+  extract, transform, load (ETL) pipelines. This keeps the site size down to a minimum, and vastly speeds 
+  up the build time on a data intensive site, such as the <a href="https://open-innovations.github.io/housing/">housing data explorer.</a>
+</p>
+<p>
+  There is still a place for pipelines in more complex analysis. In this case can still use SQL to load all or some of that data into Lume. 
+</p>
+
+<h2>Examples</h2>
+
+<h2 style='text-align: center;'>UK Job Vacancies (000s) by sector</h2>
+{{ set chart_data = remote.linechart() }}
+
+{{ comp.oi.chart.line({ config: {
+    data: chart_data,
+    height: 600,
+    legend: {
+        show: true },
+    axis: {
+        x: { title: { label: "Date" }, grid: { show: true, 'stroke-dasharray': "6 2", 'stroke-width': "1"}, tick: { spacing: 2 } },
+        y: { title: { label: "000s of Vacancies" }, grid: { "stroke-width": "1"}, tick: { spacing: 50 } }
+    },
+    columns: [{
+        name: 'decimal_date',
+        template: '{{ date | strftime() | decimalYear() }}'
+        }],
+    series: [
+      {
+        title: "Electricity, Gas, Steam & Air Con Supply",
+        x: "decimal_date",
+        y: "UK Job Vacancies (thousands) - Electricity, Gas, Steam & Air Con Supply",
+		    tooltip: "<strong class=\"subtitle\">Electricity, Gas, Steam & Air Con Supply</strong><br />{{ date | strftime('%B %Y') }}: <strong class=\"number\">{{ _y }},000</strong>"
+	    },
+      {
+        title: "Manufacturing",
+        x: "decimal_date",
+        y: "UK Job Vacancies (thousands) - Manufacturing",
+        tooltip: "<strong class=\"subtitle\">Manufacturing</strong><br />{{ date | strftime('%B %Y') }}: <strong class=\"number\">{{ _y }},000</strong>"
+      },
+      {
+        title: "Mining & Quarrying",
+        x: "decimal_date",
+        y: "UK Job Vacancies (thousands) - Mining & Quarrying",
+		    tooltip: "<strong class=\"subtitle\">Mining & Quarrying</strong><br />{{ date | strftime('%B %Y') }}: <strong class=\"number\">{{ _y }},000</strong>"
+      },
+      {
+        title: "Construction",
+        x: "decimal_date",
+        y: "UK Job Vacancies (thousands) - Construction",
+		    tooltip: "<strong class=\"subtitle\">Construction</strong><br />{{ date | strftime('%B %Y') }}: <strong class=\"number\">{{ _y }},000</strong>"
+	    }]
+    } 
+  }) 
+}}
+
+{{ function renderExample(queryName, params, overrides) }}
+  {{ set query = queryName.split('.').reduce((d, k) => d[k], page.data) }}
+  <h3>Example: <code>{{ queryName }}</code></h3>
+  {{ if overrides?.description }}
+    {{ overrides.description }}
+  {{ else }}
+  <p>
+    The page data item <code class="language-ts">{{ queryName }}</code>
+    was instantiated from <code class="language-shell">{{ queryName |> replace(/\./, '/') }}.sql</code>.
+    It contains the following query:
+  </p>
+  <pre><code class="language-sql">{{ query }}</code></pre>
+  {{ /if }}
+  <p>
+    The query call
+    <code class="language-ts">{{ queryName }}({{ overrides?.params || params |> join(", ") }})</code>,
+    returns the following result:
+  </p>
+  <p>{{ query(...params || []) |> resultTable }}
+{{ /function}}
+
+{{ renderExample('remote.linechart', undefined , {
+  description: `<p>
+    We access data through our Economic Data Dashboard (EDD). EDD uses long-format for all data files, but for Lume charts 
+    we need to reshape the data depending on the type of visualisation.
+    Since the PIVOT statement is not yet supported as a prepared statement by the DuckDB library that we're using,
+    we use a workaround defined in <code class="language-ts">remote.reshape.ts</code>. This has been re-used in 
+    <code class="language-ts">remote.linechart.ts</code>.
+</p>`} ) }}
